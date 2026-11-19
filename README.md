@@ -14,6 +14,8 @@ An empirical AI Safety research artifact and offline-first Android implementatio
 
 ## Research Motivation & Problem Statement
 
+This research stems from developing an offline-first emotional support app, inspired by observing peers navigate psychological distress over the past decade. It addresses critical failure modes in on-device Small Language Models (SLMs) such as severe sycophancy, harm rationalization, and the over-refusal vs. safety trade-off. 
+
 Deploying Small Language Models (SLMs) on-device guarantees strong user privacy for sensitive domains such as emotional support. However, empirical evaluation reveals two critical alignment failure modes in compressed 2B-scale models:
 1. **Severe Sycophancy & Harm Rationalization:** Under persuasive or emotionally charged multi-turn framing, SLMs exhibit strong sycophantic tendencies—validating unhealthy rationalizations, reinforcing delusions, or attempting unsafe clinical interventions.
 2. **The Over-Refusal vs. Safety Trade-off:** Applying rigid safety fine-tuning induces high False Positive Rates (FPR), causing models to reject benign users who express distress using dramatic metaphors or idioms.
