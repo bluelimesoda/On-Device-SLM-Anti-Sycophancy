@@ -1,4 +1,3 @@
-# On-Device-SLM-Anti-Sycophancy
 
 # Mitigating Sycophancy & Enabling Dynamic Alignment in Resource-Constrained SLMs
 
