@@ -3,8 +3,10 @@
 
 ![Domain](https://shields.io)
 ![Focus](https://shields.io)
-![Model](https://shields.io)
-![Runtime](https://shields.io)
+[![Model](https://shields.io)](https://google.dev)
+[![Runtime](https://shields.io)](https://google.dev)
+[![Prototype](https://shields.io)](https://github.com)
+
 
 An empirical AI Safety research artifact and offline-first Android implementation investigating how **sycophancy bias**, **manipulative rationalization**, and **safety over-refusal** manifest in quantized Small Language Models (Gemma 2B), and how a **Two-Layer Defense-in-Depth architecture** restores behavioral alignment under strict latency budgets.
 
@@ -88,4 +90,4 @@ To rigorously stress-test alignment robustness, I constructed a bilingual (KO/EN
 
 ---
 
-> *Note on Confidentiality: Because this architecture powers an upcoming commercial application, proprietary red-teaming datasets, heuristic rule sets, and production source code are hosted in a private repository. 
+> Note on Confidentiality: Because this architecture powers an upcoming commercial application, proprietary red-teaming datasets, heuristic rule sets, and production source code are hosted in a private repository. 
