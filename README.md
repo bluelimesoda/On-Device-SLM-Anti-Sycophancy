@@ -5,7 +5,7 @@
 ![Focus](https://shields.io)
 [![Model](https://shields.io)](https://google.dev)
 [![Runtime](https://shields.io)](https://google.dev)
-[![Prototype](https://shields.io)](https://github.com)
+[![Prototype](https://shields.io)](https://github.com/bluelimesoda/MULL-Emotional-Care-App)
 
 
 An empirical AI Safety research artifact and offline-first Android implementation investigating how **sycophancy bias**, **manipulative rationalization**, and **safety over-refusal** manifest in quantized Small Language Models (Gemma 2B), and how a **Two-Layer Defense-in-Depth architecture** restores behavioral alignment under strict latency budgets.
