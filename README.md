@@ -32,8 +32,8 @@ Deploying Small Language Models (SLMs) on-device guarantees strong user privacy 
               ▼
 ┌───────────────────────────────────────────────────────────┐
 │ Layer 1: Stateful Pre-Inference Guardrail (~3.5ms)        │
-│ • Turn-based Dynamic Risk Scoring & Temporal Decay        │
-│ • Structural Coercion & False-Positive Mitigation Filters │
+│ • Context-Aware Dynamic Risk Scoring & Temporal Decay     │
+│ • Contextual Intent & False-Positive Mitigation Filters   │
 └──────┬──────────────────────┬──────────────────────┬──────┘
        │ (Benign)             │ (Sycophancy/Toxic)   │ (Clinical Crisis)
        ▼                      ▼                      ▼
@@ -44,15 +44,16 @@ Supportive & Grounded  Neutral, Non-Validating UI Lock + Emergency Routing
                   ▼                         [Generation Aborted]
 ┌───────────────────────────────────┐
 │ Layer 2: Gemma 2B (MediaPipe)     │
-│ • Turn-Header Instruction Steering│
+│ • Dynamic Turn-Level Steering     │
 │ • Strict Anti-Sycophancy Alignment│
 └───────────────────────────────────┘
 ```
 
 ### Key Architectural Contributions
-* **Stateful Risk Tracking (Layer 1):** Models conversational trajectory rather than isolated single-turn prompts, tracking four distinct alignment failure vectors (*Emotional Dumping*, *Hostile Adversarial Probing*, *Sycophancy Traps*, and *Clinical Crisis*) with temporal decay to prevent false escalation.
-* **Dynamic Turn-Level Steering (Layer 2):** Dynamically modulates behavioral boundaries at the prompt-template level (`<start_of_turn>`) for architectures lacking dedicated system-role tokens, enforcing cross-lingual alignment consistency (KO/EN).
-* **Deterministic Fail-Safe Circuit Breaker:** Decouples high-stakes clinical crisis handling from probabilistic token generation by immediately terminating inference coroutines and routing users to verified human crisis resources.
+* **Stateful Risk Tracking (Layer 1):** Models conversational trajectory rather than isolated single-turn prompts, evaluating multiple alignment failure vectors (*Emotional Dumping*, *Adversarial Probing*, *Sycophancy Traps*, and *Clinical Crisis*) with temporal decay to prevent false escalation.
+* **Dynamic Turn-Level Steering (Layer 2):** Dynamically modulates behavioral boundaries within the turn-level prompt structure for compact architectures lacking dedicated system-role tokens, enforcing cross-lingual alignment consistency (KO/EN).
+* **Deterministic Fail-Safe Circuit Breaker:** Decouples high-stakes clinical crisis handling from probabilistic token generation by immediately terminating inference routines and routing users to verified human crisis resources.
+
 
 ---
 
@@ -85,11 +86,15 @@ To rigorously stress-test alignment robustness, I constructed a bilingual (KO/EN
 
 ## Limitations & Research Roadmap
 
-1. **Semantic Generalization Beyond Heuristics:** Layer 1 currently balances ultra-low latency ($<4\text{ ms}$) using deterministic structural heuristics. Future iterations will explore distilling a lightweight encoder (e.g., MobileBERT or linear probes on hidden states) to capture novel metaphorical manipulation.
-2. **Long-Horizon Multi-Turn Escalation:** Temporal risk decay effectively prevents false positives during transient emotional venting, but creates a potential vulnerability to slow-burn ("boiling frog") adversarial escalation over 20+ turns. Integrating hierarchical state summarization is planned to address long-horizon drift.
-3. **Quantization-Induced Alignment Drift:** Evaluating how aggressive post-training quantization (INT4 vs. INT8) degrades alignment stability across varying sampling temperatures and mobile NPU backends.
+1. **Semantic Generalization Beyond Lightweight Filtering:** Layer 1 currently prioritizes ultra-low latency ($<4\text{ ms}$) using a lightweight, real-time scoring engine. Future iterations will explore distilling compact neural encoders (e.g., MobileBERT or hidden-state linear probes) to capture increasingly complex metaphorical nuances.
+2. **Long-Horizon Context Consistency:** While temporal risk decay effectively prevents false positives during transient emotional venting, maintaining optimal sensitivity across extended multi-turn conversations remains an active area of refinement. Integrating hierarchical state summarization is planned to ensure consistent long-horizon alignment.
+3. **Quantization-Induced Alignment Drift:** Evaluating how varying post-training quantization schemes (INT4 vs. INT8) impact alignment stability across different sampling configurations and mobile NPU backends.
 4. **Evaluation Scale & Judge Calibration:** Expanding the red-teaming benchmark from $N=80$ to $N=500+$ trajectories and validating automated judge agreement against human clinical annotators.
+
 
 ---
 
-> Note on Confidentiality: Because this architecture powers an upcoming commercial application, proprietary red-teaming datasets, heuristic rule sets, and production source code are hosted in a private repository. 
+> **Confidentiality & Intellectual Property Notice**  
+> This repository serves as an architectural overview and empirical evaluation summary for an upcoming commercial application (**MULL**). To protect user safety and proprietary intellectual property, the production source code, underlying scoring algorithms, prompt templates, and adversarial red-teaming datasets are maintained in a private repository.  
+> 
+> © 2026 bluelimesoda. All Rights Reserved. Unauthorized reproduction, reverse engineering, or commercial deployment of the architectures and methodologies described herein is strictly prohibited.
