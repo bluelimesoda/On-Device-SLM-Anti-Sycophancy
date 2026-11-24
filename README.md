@@ -26,10 +26,9 @@ Deploying Small Language Models (SLMs) on-device guarantees strong user privacy 
 
 ## Methodology: Two-Layer Defense-in-Depth
 
-```text
 [Multi-Turn User Input (KO/EN)]
-              │
-              ▼
+       │
+       ▼
 ┌───────────────────────────────────────────────────────────┐
 │ Layer 1: Stateful Pre-Inference Guardrail (~3.5ms)        │
 │ • Context-Aware Dynamic Risk Scoring & Temporal Decay     │
@@ -38,16 +37,17 @@ Deploying Small Language Models (SLMs) on-device guarantees strong user privacy 
        │ (Benign)             │ (Sycophancy/Toxic)   │ (Clinical Crisis)
        ▼                      ▼                      ▼
 [Empathy Alignment]    [Boundary Pivot]       [Deterministic Cutoff]
-Supportive & Grounded  Neutral, Non-Validating UI Lock + Emergency Routing
+Supportive & Grounded  Neutral, Non-Validating Crisis Cutoff + Emergency Routing
        │                      │                      │
        └──────────┬───────────┘                      ▼
-                  ▼                         [Generation Aborted]
+                  ▼                           [Generation Aborted]
 ┌───────────────────────────────────┐
 │ Layer 2: Gemma 2B (MediaPipe)     │
 │ • Dynamic Turn-Level Steering     │
 │ • Strict Anti-Sycophancy Alignment│
 └───────────────────────────────────┘
-```
+
+
 
 ### Key Architectural Contributions
 * **Stateful Risk Tracking (Layer 1):** Models conversational trajectory rather than isolated single-turn prompts, evaluating multiple alignment failure vectors (*Emotional Dumping*, *Adversarial Probing*, *Sycophancy Traps*, and *Clinical Crisis*) with temporal decay to prevent false escalation.
