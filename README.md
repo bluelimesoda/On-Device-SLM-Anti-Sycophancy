@@ -26,6 +26,7 @@ Deploying Small Language Models (SLMs) on-device guarantees strong user privacy 
 
 ## Methodology: Two-Layer Defense-in-Depth
 
+```text
 [Multi-Turn User Input (KO/EN)]
        │
        ▼
@@ -46,7 +47,7 @@ Supportive & Grounded  Neutral, Non-Validating Crisis Cutoff + Emergency Routing
 │ • Dynamic Turn-Level Steering     │
 │ • Strict Anti-Sycophancy Alignment│
 └───────────────────────────────────┘
-
+```
 
 
 ### Key Architectural Contributions
